@@ -1,16 +1,15 @@
-const mysql = require('mysql2');
-require('dotenv').config();
+import mysql from 'mysql2/promise';
+import { parse } from 'url';
 
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+const dbUrl = process.env.DATABASE_URL;
+const parsed = new URL(dbUrl);
+
+const pool = mysql.createPool({
+  host: parsed.hostname,
+  user: parsed.username,
+  password: parsed.password,
+  database: parsed.pathname.replace('/', ''),
+  port: parsed.port || 3306,
 });
 
-connection.connect(err => {
-  if (err) throw err;
-  console.log('Connected to MySQL');
-});
-
-module.exports = connection;
+export default pool;
