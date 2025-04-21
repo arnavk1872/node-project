@@ -1,0 +1,43 @@
+{
+    "info": {
+      "name": "School API Collection",
+      "_postman_id": "your-id",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Add School",
+        "request": {
+          "method": "POST",
+          "header": [{ "key": "Content-Type", "value": "application/json" }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Oxford High\",\n  \"address\": \"123 Lane St\",\n  \"latitude\": 28.7041,\n  \"longitude\": 77.1025\n}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/addSchool",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "addSchool"]
+          }
+        }
+      },
+      {
+        "name": "List Schools",
+        "request": {
+          "method": "GET",
+          "url": {
+            "raw": "http://localhost:3000/api/listSchools?latitude=28.6139&longitude=77.2090",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "listSchools"],
+            "query": [
+              { "key": "latitude", "value": "28.6139" },
+              { "key": "longitude", "value": "77.2090" }
+            ]
+          }
+        }
+      }
+    ]
+  }
+  
