@@ -5,18 +5,15 @@ const router = express.Router();
 
 const filePath = path.join(__dirname, '../data/schools.json');
 
-// 🔄 Read schools from file
 function readSchools() {
   const data = fs.readFileSync(filePath);
   return JSON.parse(data);
 }
 
-// 💾 Write schools to file
 function writeSchools(data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 }
 
-// ✅ Create school
 router.post('/addSchool', (req, res) => {
   const { name, address, latitude, longitude } = req.body;
   if (!name || !address || !latitude || !longitude) {
@@ -38,13 +35,11 @@ router.post('/addSchool', (req, res) => {
   res.status(201).json({ message: "School added", school: newSchool });
 });
 
-// 📄 Read all schools
 router.get('/listSchools', (req, res) => {
   const schools = readSchools();
   res.json(schools);
 });
 
-// ✏️ Update school
 router.put('/updateSchool/:id', (req, res) => {
   const { id } = req.params;
   const schools = readSchools();
@@ -59,7 +54,6 @@ router.put('/updateSchool/:id', (req, res) => {
   res.json({ message: "School updated", school: updated });
 });
 
-// ❌ Delete school
 router.delete('/deleteSchool/:id', (req, res) => {
   const { id } = req.params;
   let schools = readSchools();
