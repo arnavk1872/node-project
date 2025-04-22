@@ -1,4 +1,4 @@
-const mysql = require('mysql2/promise');
+import mysql from 'mysql2/promise';
 
 const dbUrl = process.env.DATABASE_URL;
 const parsed = new URL(dbUrl);
