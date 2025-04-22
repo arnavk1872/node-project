@@ -1,4 +1,4 @@
-import mysql from 'mysql2/promise';
+const mysql = require('mysql2/promise');
 
 const dbUrl = process.env.DATABASE_URL;
 const parsed = new URL(dbUrl);
@@ -11,4 +11,4 @@ const pool = mysql.createPool({
   port: parsed.port || 3306,
 });
 
-export default pool;
+module.exports = pool;
